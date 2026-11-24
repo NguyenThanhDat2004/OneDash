@@ -1,22 +1,28 @@
-# 🖥️ OneDash – System Utility for macOS
-
 <div align="center">
 
 <img src="https://github.com/user-attachments/assets/026417b7-2f71-4ea7-a203-c2b3b82096f9"
-     width="128"
+     width="120"
      alt="OneDash App Icon"
-     style="border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);" />
+     style="border-radius: 22px;" />
 
-**A lightweight, elegant macOS menu bar app for real-time system monitoring,  
-window management, and productivity tools — all in one place.**
+# OneDash
+
+**A lightweight, native macOS menu bar utility with a Liquid Glass interface — combining real-time system monitoring, window management, keyboard lock, quick mirror, and smart clipboard history.**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Swift-5.0-orange?style=for-the-badge&logo=swift" />
-  <img src="https://img.shields.io/badge/macOS-13.0+-blue?style=for-the-badge&logo=apple" />
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/macOS-14.0+-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macOS 14.0+" />
+  <img src="https://img.shields.io/badge/Swift-6-F05138?style=for-the-badge&logo=swift&logoColor=white" alt="Swift 6" />
+  <img src="https://img.shields.io/badge/UI-SwiftUI%20%2B%20AppKit-0A84FF?style=for-the-badge" alt="SwiftUI + AppKit" />
+  <img src="https://img.shields.io/badge/License-MIT-34C759?style=for-the-badge" alt="MIT License" />
+  <a href="https://ko-fi.com/thanhdat1609"><img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" /></a>
 </p>
+
+[Download Latest Release](https://github.com/NguyenThanhDat2004/OneDash/releases/latest) •
+[Features](#-features) •
+[Installation](#-installation) •
+[Permissions](#-permissions) •
+[Architecture](#️-architecture--tech-stack) •
+[Support](#-support)
 
 </div>
 
@@ -24,335 +30,152 @@ window management, and productivity tools — all in one place.**
 
 ## ✨ Features
 
-### 🎯 **System Monitoring**
-- **CPU Usage**: Real-time CPU load monitoring with animated graphs
-- **Memory (RAM)**: Active memory usage tracking with visual indicators
-- **Storage**: Disk usage visualization with color-coded sections
-- **Network**: Upload/download speed monitoring (coming soon)
+### 📊 System Monitor
+Real-time telemetry powered by low-level Mach/BSD system APIs with minimal overhead:
+- **CPU Usage** — Accurate tick sampling with 32-bit wraparound protection.
+- **Memory (RAM)** — Live active memory tracking.
+- **Disk Storage** — Periodically refreshed storage utilization with fallback capacity checks.
 
-### 🪟 **Window Management**
-<div align="center">
+### 🎥 Quick Mirror
+- One-click instant camera preview directly from the menu bar — ideal for quick checks before meetings.
 
-| Shortcut | Action | Preview |
-|----------|--------|---------|
-| `⌃ + ⌥ + C` | Center active window | <img src="https://img.shields.io/badge/↔️_Center-Window-blue" height="20"> |
-| `⌃ + ⌥ + F` | Center & resize to 16:9 | <img src="https://img.shields.io/badge/🎬_16:9-Ratio-orange" height="20"> |
-| `⌃ + ⌥ + ↑` | Toggle maximize | <img src="https://img.shields.io/badge/⬆️_Maximize-Window-green" height="20"> |
-| `⌃ + ⌥ + ←` | Move to left half | <img src="https://img.shields.io/badge/⬅️_Left-Half-purple" height="20"> |
-| `⌃ + ⌥ + →` | Move to right half | <img src="https://img.shields.io/badge/➡️_Right-Half-purple" height="20"> |
+### ⌨️ Clean Mode (Keyboard Lock)
+- Hardware-level keyboard lock so you can safely wipe down your MacBook keyboard without triggering accidental keystrokes.
+- Displays an animated lock overlay; click the OneDash menu bar icon to unlock.
 
-</div>
+### 🪟 Window Management
+Snap the frontmost window cleanly without leaving your workflow:
 
-### ⚡ **Productivity Tools**
-- **🔒 Keyboard Cleaning Mode**: Temporarily disables keyboard input
-- **📋 Clipboard Manager**: History with text & image support, quick preview
-- **🎥 Quick Mirror**: Instant camera preview for meetings
-- **🌙 Dark Mode Toggle**: Quick system appearance switch
-- **🔊 Audio Control**: Master volume slider in menu bar
+| Layout | Description |
+| :--- | :--- |
+| **Left Half** | Snap active window to the left half of the screen |
+| **Center** | Center the active window |
+| **Maximize** | Expand the active window to fill the visible workspace |
+| **Right Half** | Snap active window to the right half of the screen |
+
+### 📋 Smart Clipboard History
+- Stores up to **20 items** supporting both **text** and **images**.
+- Built-in **Levenshtein similarity deduplication** to prevent near-duplicate text clutter.
+- Instant popup preview, one-click copy, and **Clear All** support.
+
+### 🫧 Native Liquid Glass UI
+- Built on a custom borderless, transparent `NSPanel` (`GlassPanelController`) instead of a standard `NSPopover`.
+- Adapts automatically with native `.glassEffect(.clear)` on **macOS 26+** and a clean transparent presentation on **macOS 14–15**.
+- Closes automatically on outside click or `Esc`.
 
 ---
 
-## 🎨 **Live Interface Preview**
+## 🎨 Interface Preview
 
+<!-- Replace with a real screenshot of your Liquid Glass panel when ready:
 <div align="center">
+  <img src="path/to/screenshot.png" width="360" alt="OneDash Liquid Glass Preview" />
+</div>
+-->
 
-```swift
-┌─────────────────────────────────────┐
-│    🔘 OneDash Menu Bar               │
-│   ═══════════════════════════════   │
-│    📊 SYSTEM MONITOR                 │
-│    ┌────────────────────────────┐   │
-│    │  ⚡ CPU     [██████░░] 65%  │   │
-│    │  🧠 RAM     [█████░░░] 52%  │   │
-│    │  💾 DISK    [███████░] 78%  │   │
-│    └────────────────────────────┘   │
-│   ═══════════════════════════════   │
-│    🪟 WINDOW TOOLS                  │
-│    • Center Window     ⌃⌥C         │
-│    • 16:9 Ratio        ⌃⌥F         │
-│    • Maximize          ⌃⌥↑         │
-│    • Left Half         ⌃⌥←         │
-│    • Right Half        ⌃⌥→         │
-│   ═══════════════════════════════   │
-│    ⚡ PRODUCTIVITY                  │
-│    • 📋 Clipboard History          │
-│    • 🔒 Keyboard Cleaning          │
-│    • 🎥 Quick Mirror               │
-│    • 🌙 Dark Mode Toggle           │
-│   ═══════════════════════════════   │
-│    ⚙️ Preferences                   │
-│    🚪 Quit OneDash                  │
-└─────────────────────────────────────┘
+```text
+╭──────────────────────────────────────╮
+│  ◉ OneDash                           │
+│    System Tools                      │
+├──────────────────────────────────────┤
+│  ╭────────────────────────────────╮  │
+│  │  System Monitor                │  │
+│  │  CPU 24%   RAM 58%   DISK 71%  │  │
+│  │  ████░░░   ██████░   ███████░  │  │
+│  ╰────────────────────────────────╯  │
+│  ╭────────────────────────────────╮  │
+│  │  🎥 Quick Mirror            ▶  │  │
+│  │     Click to Start             │  │
+│  ╰────────────────────────────────╯  │
+│  ╭────────────────────────────────╮  │
+│  │  ⌨️ Clean Mode            [○ ] │  │
+│  │     Lock keyboard              │  │
+│  ╰────────────────────────────────╯  │
+│  ╭────────────────────────────────╮  │
+│  │  Window Management             │  │
+│  │  [ ◧ ]   [ ⊡ ]   [ ■ ]   [ ◨ ] │  │
+│  ╰────────────────────────────────╯  │
+│  ╭────────────────────────────────╮  │
+│  │  📋 Clipboard History  (12)  › │  │
+│  ╰────────────────────────────────╯  │
+├──────────────────────────────────────┤
+│  Quit                         v1.0.0 │
+╰──────────────────────────────────────╯
 ```
 
-</div>
-
-**Visual Style**: Glassmorphism design with:
-- Frosted glass backgrounds
-- Smooth animations on hover
-- Real-time updating indicators
-- Dynamic color themes (light/dark)
-
 ---
 
-## 🚀 **Quick Start**
+## 🚀 Installation
 
-### 📥 **Method 1: Direct Download (Recommended)**
-1. **Download the latest release**:
+### Option 1: Direct Download (Recommended)
+1. Download `OneDash.zip` from the [GitHub Releases](https://github.com/NguyenThanhDat2004/OneDash/releases/latest) page.
+2. Unzip and move **OneDash.app** into `/Applications`.
+3. If macOS Gatekeeper blocks the unsigned binary on first launch, clear the quarantine flag:
    ```bash
-   # Using curl
-   curl -L https://github.com/NguyenThanhDat2004/OneDash/releases/latest/download/OneDash-v1.0.0.zip -o OneDash.zip
-   
-   # Or via GitHub Releases page
-   # https://github.com/NguyenThanhDat2004/OneDash/releases
+   xattr -dr com.apple.quarantine /Applications/OneDash.app
+   open /Applications/OneDash.app
    ```
 
-2. **Extract and run**:
-   ```bash
-   unzip OneDash.zip
-   # If Gatekeeper blocks:
-   xattr -cr OneDash.app
-   sudo spctl --add --label "OneDash" /Applications/OneDash.app
-   ```
+### Option 2: Build from Source
+Requires **Xcode 15+** and **macOS 14.0+**.
 
-3. **Open the app**:
-   ```bash
-   open OneDash.app
-   ```
-
-### 📥 **Method 2: Build from Source**
 ```bash
-# 1. Clone repository
-git clone https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS.git
+git clone [https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS.git](https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS.git)
 cd One_Dash_for_MacOS
 
-# 2. Build using Xcode
-xcodebuild -project OneDash.xcodeproj -scheme OneDash -configuration Release
+# Open in Xcode
+open OneDash.xcodeproj
 
-# 3. Find the built app
-open build/Release/OneDash.app
-```
-
-### 📥 **Method 3: Homebrew (Coming Soon)**
-```bash
-# Once published to Homebrew Cask
-brew install --cask onedash
+# Or build Release via CLI
+xcodebuild -project OneDash.xcodeproj -scheme OneDash -configuration Release build
 ```
 
 ---
 
-## 🔐 **Permission Setup**
+## 🔐 Permissions
 
-| Permission | Required For | Setup Guide |
-|------------|-------------|-------------|
-| **Accessibility** | Window Management | 1. Open System Settings<br>2. Privacy & Security → Accessibility<br>3. Click 🔒 to unlock<br>4. Enable OneDash |
-| **Camera** | Quick Mirror | 1. System Settings → Privacy<br>2. Camera<br>3. Enable OneDash |
-| **Screen Recording** | Future features | Optional - for advanced window management |
+OneDash requests only the permissions required by the features you use:
 
-**Quick Fix for Gatekeeper**:
-```bash
-# If "app can't be opened because it's from an unidentified developer"
-sudo spctl --master-disable  # Temporary allow all (re-enable after)
-# OR
-xattr -d com.apple.quarantine /Applications/OneDash.app
-```
+| Permission | Used For | How to Enable |
+| :--- | :--- | :--- |
+| **Accessibility** | Window Management & Keyboard Lock (`CGEventTap`) | **System Settings → Privacy & Security → Accessibility** → Enable **OneDash** |
+| **Camera** | Quick Mirror | **System Settings → Privacy & Security → Camera** → Enable **OneDash** |
 
 ---
 
-## 🛠️ **Technical Stack**
+## 🛠️ Architecture & Tech Stack
 
-<div align="center">
-
-| Layer | Technology | Purpose |
-|-------|------------|---------|
-| **Language** | Swift 5.9 | Native macOS performance |
-| **UI Framework** | SwiftUI 5 | Declarative, modern UI |
-| **System APIs** | AppKit, IOKit, CoreGraphics | Deep macOS integration |
-| **Architecture** | MVVM + Combine | Reactive, testable code |
-| **Design System** | Glassmorphism + Neumorphism | Aesthetic visual style |
-| **Persistence** | SwiftData | Local data storage |
-| **Animations** | Lottie + Core Animation | Smooth UI interactions |
-
-</div>
+| Layer | Technology | Role |
+| :--- | :--- | :--- |
+| **Language** | Swift 6, Objective-C | High-performance native macOS logic & low-level hardware hooks |
+| **UI & Windowing** | SwiftUI, AppKit (`NSPanel`, `NSHostingView`) | Borderless Liquid Glass menu bar panel & fluid animations |
+| **Reactive State** | MVVM + Combine (`@MainActor`) | Lifecycle-aware system telemetry & memory-safe bindings |
+| **System Layer** | XNU (Mach / BSD), CoreGraphics, Accessibility API | CPU/RAM/Disk metrics, keyboard event interception, window frames |
 
 ---
 
-## 📁 **Project Structure**
-```
-OneDash/
-├── 📱 OneDash.xcodeproj
-├── 📂 Sources/
-│   ├── 📂 App/              # App entry point
-│   ├── 📂 Views/            # SwiftUI views
-│   │   ├── MenuBarView.swift
-│   │   ├── DashboardView.swift
-│   │   └── Components/      # Reusable components
-│   ├── 📂 ViewModels/       # Business logic
-│   ├── 📂 Models/          # Data models
-│   ├── 📂 Services/        # System services
-│   │   ├── SystemMonitor.swift
-│   │   ├── WindowManager.swift
-│   │   └── ClipboardService.swift
-│   └── 📂 Utilities/       # Helpers & extensions
-├── 📂 Assets/              # Images, icons
-└── 📂 Docs/               # Documentation
-```
+## 🤝 Contributing
+
+Contributions, bug reports, and feature ideas are welcome:
+
+1. Fork the repository.
+2. Create a branch: `git checkout -b feat/your-feature`
+3. Commit your changes: `git commit -m "feat: describe your change"`
+4. Push to your fork and open a Pull Request.
+
+Found a bug? Please [open an issue](https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS/issues) with your macOS version, chip (Apple Silicon / Intel), and steps to reproduce.
 
 ---
 
-## 🤝 **Contributing**
+## ☕ Support
 
-We welcome contributions! Here's how:
+If you find **OneDash** useful, consider supporting its development:
 
-### **Development Setup**
-```bash
-# 1. Fork & clone
-git clone https://github.com/YOUR_USERNAME/One_Dash_for_MacOS.git
-
-# 2. Create virtual environment for scripts
-python3 -m venv venv
-source venv/bin/activate
-
-# 3. Install development tools
-brew install swiftlint  # Code linting
-brew install swiftformat # Code formatting
-
-# 4. Build and test
-xcodebuild test -project OneDash.xcodeproj -scheme OneDash
-```
-
-### **Contribution Guidelines**
-1. **Fork** the repository
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Follow code style**:
-   ```swift
-   // Use SwiftLint rules
-   // Document public APIs
-   // Write unit tests for new features
-   ```
-4. **Commit changes**: `git commit -m "feat: add amazing feature"`
-5. **Push**: `git push origin feature/amazing-feature`
-6. **Open a Pull Request**
-
-### **Issue Labels**
-- `🐛 bug` - Something isn't working
-- `🚀 enhancement` - New feature or improvement
-- `📖 documentation` - Documentation improvements
-- `💅 ui/ux` - Design-related changes
-- `🔧 good first issue` - Good for newcomers
+<a href="https://ko-fi.com/thanhdat1609"><img src="https://img.shields.io/badge/Buy_Me_a_Coffee-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Support on Ko-fi" /></a>
 
 ---
 
-## 🐛 **Reporting Issues**
+## 📜 License
 
-**Please include**:
-```markdown
-## Description
-[Clear description of the issue]
-
-## Steps to Reproduce
-1. [First Step]
-2. [Second Step]
-3. [And so on...]
-
-## Expected Behavior
-[What you expected to happen]
-
-## Actual Behavior
-[What actually happened]
-
-## Environment
-- macOS Version: [e.g., 14.1.2]
-- OneDash Version: [e.g., 1.0.0]
-- Device: [e.g., MacBook Pro M2 2023]
-
-## Screenshots/Logs
-[If applicable]
-```
-
----
-
-## 📜 **License**
-
-```
-MIT License
-
-Copyright (c) 2025 Nguyen Thanh Dat
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
----
-
-## 🌟 **Support the Project**
-
-<div align="center">
-
-### **⭐ Star the Repository**
-Help us grow by starring the repo!
-
-### **🐦 Share on Social Media**
-```markdown
-Check out OneDash – a beautiful macOS utility for system monitoring, window management, and productivity tools! ✨
-
-🚀 GitHub: https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS
-```
-
-### **📞 Connect**
-[![GitHub Issues](https://img.shields.io/badge/Issues-Report_🐛-red?style=flat-square)](https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS/issues)
-[![Discussions](https://img.shields.io/badge/Discussions-💬-blue?style=flat-square)](https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS/discussions)
-[![Developer](https://img.shields.io/badge/Developer-👨‍💻-green?style=flat-square)](https://github.com/NguyenThanhDat2004)
-
----
-
-**OneDash** – Your all-in-one macOS companion  
-*Elegant, powerful, and always by your side*
-
-</div>
-
----
-
-## 🔄 **Real-time Status**
-
-| Component | Status | Last Updated |
-|-----------|--------|--------------|
-| **Build** | ![Build Status](https://img.shields.io/badge/Passing-✓-brightgreen) | Today |
-| **Code Coverage** | ![Coverage](https://img.shields.io/badge/85%25-success) | v1.0.0 |
-| **Downloads** | ![Downloads](https://img.shields.io/badge/1k+-blue) | Monthly |
-| **Active Users** | ![Users](https://img.shields.io/badge/500+-👥-purple) | Live |
-
-*Updated automatically via GitHub Actions*
-
----
-
-<div align="center">
-
-### **Ready to enhance your macOS experience?**
-[![Download Now](https://img.shields.io/badge/Download-🚀-ff69b4?style=for-the-badge&logo=apple)](https://github.com/NguyenThanhDat2004/OneDash/releases/latest)
-[![Try Online Demo](https://img.shields.io/badge/Try_Online_Demo-🌐-9cf?style=for-the-badge)](https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS#-quick-start)
-
-</div>
-
----
-
-**Tips**:
-- The app runs in your menu bar - look for the OneDash icon (📊)
-- Right-click the menu bar icon for quick actions
-- All features are accessible without leaving your current app
-- Designed to use minimal system resources (< 50MB RAM)
+Released under the [MIT License](LICENSE).  
+Copyright © 2026 **Nguyễn Thành Đạt**.
