@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/Swift-6-F05138?style=for-the-badge&logo=swift&logoColor=white" alt="Swift 6" />
   <img src="https://img.shields.io/badge/UI-SwiftUI%20%2B%20AppKit-0A84FF?style=for-the-badge" alt="SwiftUI + AppKit" />
   <img src="https://img.shields.io/badge/License-MIT-34C759?style=for-the-badge" alt="MIT License" />
-  <a href="https://ko-fi.com/thanhdat1609"><img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" /></a>
+  <a href="https://ko-fi.com/A0A72B59US"><img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" /></a>
 </p>
 
 [Download Latest Release](https://github.com/NguyenThanhDat2004/OneDash/releases/latest) •
@@ -171,7 +171,7 @@ Found a bug? Please [open an issue](https://github.com/NguyenThanhDat2004/One_Da
 
 If you find **OneDash** useful, consider supporting its development:
 
-<a href="https://ko-fi.com/thanhdat1609"><img src="https://img.shields.io/badge/Buy_Me_a_Coffee-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Support on Ko-fi" /></a>
+<a href='https://ko-fi.com/A0A72B59US' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ---
 
