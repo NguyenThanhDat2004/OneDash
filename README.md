@@ -101,10 +101,10 @@ window management, and productivity tools — all in one place.**
 1. **Download the latest release**:
    ```bash
    # Using curl
-   curl -L https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS/releases/latest/download/OneDash.zip -o OneDash.zip
+   curl -L https://github.com/NguyenThanhDat2004/OneDash/releases/latest/download/OneDash-v1.0.0.zip -o OneDash.zip
    
    # Or via GitHub Releases page
-   # https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS/releases
+   # https://github.com/NguyenThanhDat2004/OneDash/releases
    ```
 
 2. **Extract and run**:
@@ -344,7 +344,7 @@ Check out OneDash – a beautiful macOS utility for system monitoring, window ma
 <div align="center">
 
 ### **Ready to enhance your macOS experience?**
-[![Download Now](https://img.shields.io/badge/Download-🚀-ff69b4?style=for-the-badge&logo=apple)](https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS/releases/latest)
+[![Download Now](https://img.shields.io/badge/Download-🚀-ff69b4?style=for-the-badge&logo=apple)](https://github.com/NguyenThanhDat2004/OneDash/releases/latest)
 [![Try Online Demo](https://img.shields.io/badge/Try_Online_Demo-🌐-9cf?style=for-the-badge)](https://github.com/NguyenThanhDat2004/One_Dash_for_MacOS#-quick-start)
 
 </div>
